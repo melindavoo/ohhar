@@ -1,0 +1,48 @@
+name: Fetch WebAMI Data
+
+on:
+  schedule:
+    # Run daily at midnight UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch:  # Allow manual triggers
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Hurl
+        run: |
+          curl -LO https://github.com/Orange-OpenSource/hurl/releases/download/5.0.1/hurl_5.0.1_amd64.deb
+          sudo dpkg -i hurl_5.0.1_amd64.deb
+
+      - name: Install Xidel
+        run: |
+          curl -LO https://sourceforge.net/projects/videlibri/files/Xidel/Xidel%20development/xidel_0.9.9-1_amd64.deb
+          sudo dpkg -i xidel_0.9.9-1_amd64.deb
+
+      - name: Run Hurl script
+        env:
+          WEBAMI_EMAIL: ${{ secrets.WEBAMI_EMAIL }}
+          WEBAMI_PASSWORD: ${{ secrets.WEBAMI_PASSWORD }}
+          WEBAMI_ACCOUNT_NUMBER: ${{ secrets.WEBAMI_ACCOUNT_NUMBER }}
+        run: |
+          hurl --variable WEBAMI_EMAIL="$WEBAMI_EMAIL" \
+               --variable WEBAMI_PASSWORD="$WEBAMI_PASSWORD" \
+               --variable WEBAMI_ACCOUNT_NUMBER="$WEBAMI_ACCOUNT_NUMBER" \
+               --very-verbose \
+               --output webami-available-weeks.json \
+               curl/get_available_weeks.hurl | xidel -i --output-format=json --extract //h3[@class='aec-dcsnavHead'][text()='Available Week']/following-sibling::div::ul/li/a/text()
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: webami-data-${{ github.run_number }}
+          path: |
+            **/*.html
+            **/*.json
+          retention-days: 30

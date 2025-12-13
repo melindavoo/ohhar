@@ -1,0 +1,12 @@
+**/target**
+.venv/
+.DS_Store
+.env.*
+.vscode*
+# Hurl output files
+curl/*.html
+curl/*.json
+*.hurl.log
+html/**/*
+curl/**/*
+.env

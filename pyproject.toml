@@ -1,0 +1,14 @@
+[project]
+name = "oh-har"
+version = "0.1.0"
+description = "From HAR to HURL, cURL and back again. Oh, __HAR HAR__ HAR HAR!"
+readme = "README.md"
+requires-python = ">=3.14.0"
+dependencies = [
+    "ipykernel>=7.1.0",
+    "ipywidgets>=8.1.8",
+    "jupyter>=1.1.1",
+    "lxml>=6.0.2",
+    "pip>=25.3",
+    "setuptools>=80.9.0",
+]
