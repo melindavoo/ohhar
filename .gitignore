@@ -8,5 +8,4 @@ curl/*.html
 curl/*.json
 *.hurl.log
 html/**/*
-curl/**/*
 .env
