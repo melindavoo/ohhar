@@ -30,10 +30,11 @@ jobs:
           WEBAMI_PASSWORD: ${{ secrets.WEBAMI_PASSWORD }}
           WEBAMI_ACCOUNT_NUMBER: ${{ secrets.WEBAMI_ACCOUNT_NUMBER }}
         run: |
-          hurl --variable WEBAMI_EMAIL="$WEBAMI_EMAIL" \
-               --variable WEBAMI_PASSWORD="$WEBAMI_PASSWORD" \
-               --variable WEBAMI_ACCOUNT_NUMBER="$WEBAMI_ACCOUNT_NUMBER" \
+          hurl --variable WEBAMI_EMAIL="$env:WEBAMI_EMAIL" \
+               --variable WEBAMI_PASSWORD="$env:WEBAMI_PASSWORD" \
+               --variable WEBAMI_ACCOUNT_NUMBER="$env:WEBAMI_ACCOUNT_NUMBER" \
                --very-verbose \
+               --variables-file ../.vars \
                -o curl/webami-available-weeks.html \
                curl/get_available_weeks.hurl
       - name: Run Xidel
