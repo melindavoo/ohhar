@@ -30,6 +30,8 @@ keep-alive: true
 referer: https://webami.aent.com/music
 Cookie: __cf_bm={{__cf_bm}};
 [Options]
+retry: 3
+retry-interval: 3s
 delay: 5s
-very-verbose: true
 output: webami-available-weeks.html
+HTTP 200

@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: oh-har
+Version: 0.1.0
+Summary: From HAR to HURL, cURL and back again. Oh, __HAR HAR__ HAR HAR!
+Requires-Python: >=3.14.0
+Description-Content-Type: text/markdown
+Requires-Dist: ipykernel>=7.1.0
+Requires-Dist: ipywidgets>=8.1.8
+Requires-Dist: jupyter>=1.1.1
+Requires-Dist: lxml>=6.0.2
+Requires-Dist: pip>=25.3
+Requires-Dist: setuptools>=80.9.0
+
+# OH, HAR! ☺️
+
+Fetches a wee bit of information from webami to check if new releases have changed since the last check. This is saved to a CSV to tell another service what changed.
