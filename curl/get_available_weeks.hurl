@@ -33,5 +33,4 @@ Cookie: __cf_bm={{__cf_bm}};
 retry: 3
 retry-interval: 3s
 delay: 5s
-output: webami-available-weeks.html
 HTTP 200

@@ -34,6 +34,7 @@ jobs:
                --variable WEBAMI_PASSWORD="$WEBAMI_PASSWORD" \
                --variable WEBAMI_ACCOUNT_NUMBER="$WEBAMI_ACCOUNT_NUMBER" \
                --very-verbose \
+               -o curl/webami-available-weeks.html \
                curl/get_available_weeks.hurl
       - name: Run Xidel
         run: |
