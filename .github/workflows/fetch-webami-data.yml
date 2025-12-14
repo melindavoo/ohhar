@@ -38,6 +38,7 @@ jobs:
       - name: Run Xidel
         run: |
           xidel curl/webami-available-weeks.html -e '//a[text()="Available Week"]/parent::h3/following-sibling::div[1]/ul/li / string-join(a/text() | a/@href, ";")' > aw.csv
+          tree .
 
       - name: Upload results
         uses: actions/upload-artifact@v4
